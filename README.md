@@ -1,7 +1,7 @@
 # 🔍 Advanced Reputation Monitor
 
 <div align="left">
-  <img src="Icon.ico" alt="Reputation Monitor" width="10" />
+  <img src="Icon.ico" alt="Reputation Monitor" width="50" />
   
   [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
   [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
