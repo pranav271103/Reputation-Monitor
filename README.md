@@ -5,7 +5,7 @@
   [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
   [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
   [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
-  [![Documentation](https://github.com/pranav271103/Reputation-Monitor/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/pranav271103/Reputation-Monitor/actions/workflows/gh-pages.yml)
+  [![Documentation Status](https://github.com/pranav271103/Reputation-Monitor/actions/workflows/gh-pages.yml/badge.svg?branch=gh-pages)](https://pranav271103.github.io/Reputation-Monitor/)
   [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 </div>
