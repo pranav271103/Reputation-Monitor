@@ -10,24 +10,6 @@
 
 </div>
 
-## 📚 Documentation
-
-Comprehensive documentation is available at [https://pranav271103.github.io/Reputation-Monitor](https://pranav271103.github.io/Reputation-Monitor).
-
-### Building Documentation Locally
-
-To build and serve the documentation locally:
-
-```bash
-# Install dependencies
-pip install -r requirements-docs.txt
-
-# Serve the documentation
-mkdocs serve
-```
-
-Then open `http://127.0.0.1:8000` in your browser.
-
 ## Overview
 
 Advanced Reputation Monitor is a powerful tool that tracks and analyzes online mentions across multiple platforms including Twitter, Reddit, and web search results. It provides comprehensive sentiment analysis, confidence scoring, and interactive visualizations to help you monitor your brand's online reputation.
