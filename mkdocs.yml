@@ -42,13 +42,6 @@ use_directory_urls: true
 # Edit URI
 edit_uri: edit/main/docs/
 
-# Extra CSS and JS
-extra_css:
-  - stylesheets/extra.css
-
-extra_javascript:
-  - javascripts/extra.js
-
 # Markdown extensions
 markdown_extensions:
   - toc:
@@ -83,20 +76,11 @@ nav:
   - Developer Guide: developer_guide.md
   - Troubleshooting: troubleshooting.md
 
-# Extra
-extra_css:
-  - stylesheets/extra.css
-
-extra_javascript:
-  - javascripts/extra.js
-
-# Google Analytics
-google_analytics:
-  - UA-XXXXXXXX-X
-  - auto
-
-# Copyright
-copyright: Copyright &copy; 2023 Reputation Monitor
+# Extra configuration
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/pranav271103/Reputation-Monitor
 
 # GitHub integration
 extra:
