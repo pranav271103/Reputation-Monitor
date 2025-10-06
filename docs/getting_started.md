@@ -87,5 +87,5 @@ streamlit run reputation_monitor.py
 ## Next Steps
 
 - Learn how to [configure monitoring jobs](user_guide.md#monitoring-setup)
-- Explore [advanced configuration options](advanced_topics.md)
 - Check out the [API documentation](api_reference.md) for integration options
+- Read the [developer guide](developer_guide.md) for advanced configuration

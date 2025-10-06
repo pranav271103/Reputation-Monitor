@@ -274,4 +274,4 @@ For support, please:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE file](https://github.com/pranav271103/Reputation-Monitor/blob/main/LICENSE) in the repository for details.
