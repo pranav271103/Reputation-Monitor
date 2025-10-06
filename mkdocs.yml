@@ -1,0 +1,85 @@
+site_name: Reputation Monitor
+docs_dir: docs
+site_dir: site
+
+# Repository
+repo_name: pranav271103/Online-bad-reputation-
+repo_url: https://github.com/pranav271103/Online-bad-reputation-
+
+# Theme
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - toc.integrate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+# Extensions
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tilde
+  - toc:
+      permalink: true
+
+# Navigation
+nav:
+  - Home: index.md
+  - Getting Started: getting_started.md
+  - User Guide: user_guide.md
+  - API Reference: api_reference.md
+  - Developer Guide: developer_guide.md
+  - Troubleshooting: troubleshooting.md
+
+# Extra
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+# Google Analytics
+google_analytics:
+  - UA-XXXXXXXX-X
+  - auto
+
+# Copyright
+copyright: Copyright &copy; 2023 Reputation Monitor
+
+# GitHub integration
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/pranav271103/Online-bad-reputation-
