@@ -21,6 +21,7 @@ Welcome to the official documentation for the Reputation Monitor system. This co
 3. [API Reference](api_reference.md)
    - [Authentication](api_reference.md#authentication)
    - [Endpoints](api_reference.md#endpoints)
+   - [Rate Limiting](api_reference.md#rate-limiting)
    - [Webhooks](api_reference.md#webhooks)
 
 4. [Developer Guide](developer_guide.md)
@@ -32,21 +33,10 @@ Welcome to the official documentation for the Reputation Monitor system. This co
    - [Common Issues](troubleshooting.md#common-issues)
    - [FAQ](troubleshooting.md#frequently-asked-questions)
 
-6. [API Integration](api_integration.md)
-   - [Authentication](api_integration.md#authentication)
-   - [Available Endpoints](api_integration.md#available-endpoints)
-   - [Rate Limiting](api_integration.md#rate-limiting)
-
-7. [Advanced Topics](advanced_topics.md)
-   - [Custom Sentiment Models](advanced_topics.md#custom-sentiment-models)
-   - [Data Export](advanced_topics.md#data-export)
-   - [Performance Tuning](advanced_topics.md#performance-tuning)
-
 ## Quick Links
 
 - [GitHub Repository](https://github.com/pranav271103/Reputation-Monitor)
 - [Issue Tracker](https://github.com/pranav271103/Reputation-Monitor/issues)
-- [Changelog](CHANGELOG.md)
 
 ## Support
 

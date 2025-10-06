@@ -1,13 +1,3 @@
-<table>
-  <tr>
-    <td><img src="assets/unnamed-removebg-preview.png" alt="Reputation Monitor" width="120"/></td>
-    <td>
-      <h1>Reputation Monitor</h1>
-      <p><strong>Monitor your brand's online reputation</strong></p>
-    </td>
-  </tr>
-</table>
-
 <div align="center">
   <img src="https://raw.githubusercontent.com/pranav271103/Reputation-Monitor/main/assets/unnamed-removebg-preview.png" alt="Reputation Monitor Logo" width="200"/>
   <h1>Reputation Monitor</h1>

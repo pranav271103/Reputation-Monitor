@@ -14,8 +14,8 @@ This guide will help you set up and configure the Reputation Monitor system.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/Online-bad-reputation-.git
-cd Online-bad-reputation-
+git clone https://github.com/pranav271103/Reputation-Monitor.git
+cd Reputation-Monitor
 ```
 
 ### 2. Create and Activate Virtual Environment (Recommended)
