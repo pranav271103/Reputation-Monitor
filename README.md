@@ -1,12 +1,20 @@
-# Advanced Reputation Monitor
+<table>
+  <tr>
+    <td><img src="assets/unnamed-removebg-preview.png" alt="Reputation Monitor" width="120"/></td>
+    <td>
+      <h1>Reputation Monitor</h1>
+      <p><strong>Monitor your brand's online reputation</strong></p>
+    </td>
+  </tr>
+</table>
 
 <div align="left">
-  <img src="assets/unnamed-removebg-preview.png" alt="Reputation Monitor" width="120" />
-  
+
   [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
   [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
   [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
   [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 </div>
 
 ## Overview
