@@ -8,19 +8,21 @@
   </tr>
 </table>
 
-<div align="left">
-
+<div align="center">
+  <img src="https://raw.githubusercontent.com/pranav271103/Reputation-Monitor/main/assets/unnamed-removebg-preview.png" alt="Reputation Monitor Logo" width="200"/>
+  <h1>Reputation Monitor</h1>
+  
   [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
   [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
   [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
-  [![Documentation](https://github.com/pranav271103/Online-bad-reputation-/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/pranav271103/Online-bad-reputation-/actions/workflows/gh-pages.yml)
+  [![Documentation](https://github.com/pranav271103/Reputation-Monitor/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/pranav271103/Reputation-Monitor/actions/workflows/gh-pages.yml)
   [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 </div>
 
 ## 📚 Documentation
 
-Comprehensive documentation is available at [https://pranav271103.github.io/Online-bad-reputation-](https://pranav271103.github.io/Online-bad-reputation-).
+Comprehensive documentation is available at [https://pranav271103.github.io/Reputation-Monitor](https://pranav271103.github.io/Reputation-Monitor).
 
 ### Building Documentation Locally
 

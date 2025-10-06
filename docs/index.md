@@ -1,4 +1,7 @@
-# Reputation Monitor Documentation
+<div align="center">
+  <img src="https://raw.githubusercontent.com/pranav271103/Reputation-Monitor/main/assets/unnamed-removebg-preview.png" alt="Reputation Monitor Logo" width="200"/>
+  <h1>Reputation Monitor Documentation</h1>
+</div>
 
 Welcome to the official documentation for the Reputation Monitor system. This comprehensive documentation will guide you through installation, configuration, usage, and customization of the platform.
 
@@ -41,10 +44,10 @@ Welcome to the official documentation for the Reputation Monitor system. This co
 
 ## Quick Links
 
-- [GitHub Repository](https://github.com/yourusername/Online-bad-reputation-)
-- [Issue Tracker](https://github.com/yourusername/Online-bad-reputation-/issues)
+- [GitHub Repository](https://github.com/pranav271103/Reputation-Monitor)
+- [Issue Tracker](https://github.com/pranav271103/Reputation-Monitor/issues)
 - [Changelog](CHANGELOG.md)
 
 ## Support
 
-For support, please [open an issue](https://github.com/yourusername/Online-bad-reputation-/issues) or contact support@example.com
+For support, please [open an issue](https://github.com/pranav271103/Reputation-Monitor/issues) or contact support@example.com

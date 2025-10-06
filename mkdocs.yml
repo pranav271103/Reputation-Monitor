@@ -3,8 +3,8 @@ docs_dir: docs
 site_dir: site
 
 # Repository
-repo_name: pranav271103/Online-bad-reputation-
-repo_url: https://github.com/pranav271103/Online-bad-reputation-
+repo_name: pranav271103/Reputation-Monitor
+repo_url: https://github.com/pranav271103/Reputation-Monitor
 
 # Theme
 theme:
