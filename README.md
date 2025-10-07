@@ -67,7 +67,7 @@ Advanced Reputation Monitor is a powerful tool that tracks and analyzes online m
 - Pytest (Testing)
 - Black & Flake8 (Code formatting)
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -100,7 +100,7 @@ Advanced Reputation Monitor is a powerful tool that tracks and analyzes online m
    - Create a `.env` file in the project root
    - Add your API keys (see Configuration section below)
 
-## ⚙️ Configuration
+## Configuration
 
 Create a `.env` file in the root directory with the following variables:
 
@@ -121,7 +121,7 @@ GOOGLE_CSE_ID=your_custom_search_engine_id
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-## 🏃‍♂️ Usage
+## Usage
 
 1. **Start the application**:
    ```bash
@@ -140,7 +140,7 @@ OPENAI_API_KEY=your_openai_api_key
 
 5. Explore the results in the interactive dashboard
 
-## 📊 Features in Detail
+## Features in Detail
 
 ### Sentiment Analysis
 - Real-time sentiment classification of mentions
@@ -157,7 +157,7 @@ OPENAI_API_KEY=your_openai_api_key
 - Export results to CSV for further analysis
 - Copy direct links to mentions
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Rate Limiting
 - The application implements rate limiting to comply with API restrictions
@@ -169,7 +169,7 @@ OPENAI_API_KEY=your_openai_api_key
 - Check that your API keys have the necessary permissions
 - Verify that your API keys haven't exceeded their rate limits
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -179,11 +179,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [Streamlit](https://streamlit.io/) for the amazing web framework
 - [Tweepy](https://www.tweepy.org/) for Twitter API access
