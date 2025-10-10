@@ -15,6 +15,8 @@ from googleapiclient.discovery import build
 import random
 import threading
 from collections import defaultdict
+from reporting import ReportManager, report_post_ui
+import json
 
 # Load environment
 load_dotenv()
@@ -78,8 +80,9 @@ class APIRateLimiter:
             self.last_calls[api_name] = time.time()
             self.call_counts[api_name].append(time.time())
 
-# Global rate limiter instance
+# Global instances
 rate_limiter = APIRateLimiter()
+report_manager = ReportManager("reports.json")
 
 # Initialize APIs
 def init_apis():
@@ -297,8 +300,11 @@ def fetch_web_safe(query, limit=10):
         
     return items
 
-def fetch_all(name, days, limit):
-    """Coordinated fetching with enhanced progress tracking"""
+def fetch_all(name, days, limit, sources=None):
+    """Coordinated fetching with enhanced progress tracking and source filtering"""
+    if sources is None:
+        sources = ["Twitter", "Reddit", "Web"]
+    
     since = datetime.now(timezone.utc) - timedelta(days=min(days, 7))
     
     # Enhanced progress tracking
@@ -306,27 +312,43 @@ def fetch_all(name, days, limit):
     progress_info = st.empty()
     st.session_state.progress_info = progress_info  # Store for error messages
     
-    # Twitter (most restrictive API)
-    progress_info.info("🐦 Fetching Twitter mentions... (This may take 1-2 minutes due to rate limits)")
-    progress_bar.progress(5)
+    all_items = []
+    progress_steps = len(sources)
+    progress_per_step = 100 // max(1, progress_steps)  # Avoid division by zero
+    current_progress = 0
     
-    tw = fetch_twitter_safe(name, since, limit//3)
-    progress_bar.progress(40)
+    # Calculate limit per source (distribute evenly among selected sources)
+    limit_per_source = max(1, limit // len(sources)) if sources else 0
+    
+    # Twitter
+    if "Twitter" in sources and twitter_client:
+        progress_info.info("🐦 Fetching Twitter mentions... (This may take 1-2 minutes due to rate limits)")
+        tw = fetch_twitter_safe(name, since, limit_per_source)
+        all_items.extend(tw)
+        current_progress += progress_per_step
+        progress_bar.progress(min(100, int(current_progress)))
     
     # Reddit
-    progress_info.info("🔍 Fetching Reddit discussions...")
-    rd = fetch_reddit_safe(name, since, limit//3)
-    progress_bar.progress(70)
+    if "Reddit" in sources and reddit_client:
+        progress_info.info("🔍 Fetching Reddit discussions...")
+        rd = fetch_reddit_safe(name, since, limit_per_source)
+        all_items.extend(rd)
+        current_progress += progress_per_step
+        progress_bar.progress(min(100, int(current_progress)))
     
     # Web search
-    progress_info.info("🌐 Searching the web...")
-    wb = fetch_web_safe(name, limit - len(tw) - len(rd))
-    progress_bar.progress(90)
+    if "Web" in sources and GOOGLE_API_KEY and GOOGLE_CSE_ID:
+        progress_info.info("🌐 Searching the web...")
+        remaining_limit = max(0, limit - len(all_items))
+        if remaining_limit > 0:
+            wb = fetch_web_safe(name, remaining_limit)
+            all_items.extend(wb)
+        current_progress += progress_per_step
+        progress_bar.progress(min(100, int(current_progress)))
     
     # Process results
     progress_info.info("📊 Processing and analyzing results...")
-    all_items = tw + rd + wb
-    df = pd.DataFrame(all_items)
+    df = pd.DataFrame(all_items) if all_items else pd.DataFrame()
     
     if not df.empty:
         df["created_at"] = pd.to_datetime(df["created_at"])
@@ -393,16 +415,29 @@ else:
 
 # Search button with rate limit warning
 if st.sidebar.button("🔍 Search", type="primary"):
-    if not any([twitter_ok, reddit_ok, google_ok]):
-        st.error("❌ No API credentials found. Please check your .env file.")
+    # Check if any selected sources have valid API keys
+    selected_sources = []
+    if "Twitter" in filter_sources and twitter_ok:
+        selected_sources.append("Twitter")
+    if "Reddit" in filter_sources and reddit_ok:
+        selected_sources.append("Reddit")
+    if "Web" in filter_sources and google_ok:
+        selected_sources.append("Web")
+    
+    if not selected_sources:
+        st.error("❌ No valid API credentials found for the selected sources. Please check your .env file or select different sources.")
     else:
         # Clear any previous rate limit messages
         if 'df' in st.session_state:
             del st.session_state.df
             
         with st.spinner("🔄 Starting comprehensive analysis..."):
-            df = fetch_all(brand, days, limit)
+            df = fetch_all(brand, days, limit, sources=selected_sources)
             st.session_state.df = df
+            
+            # Show success message with sources used
+            sources_used = ", ".join(selected_sources)
+            st.sidebar.success(f"✅ Search complete! Used sources: {sources_used}")
 
 # Display results (rest of the UI code remains the same)
 if "df" in st.session_state and not st.session_state.df.empty:
@@ -511,7 +546,7 @@ if "df" in st.session_state and not st.session_state.df.empty:
                          title="Sentiment Trends Over Time")
             st.plotly_chart(fig, use_container_width=True)
 
-        # Detailed mentions table
+        # Detailed mentions table with reporting
         st.subheader("📋 Recent Mentions")
         df_display = df.copy()
         df_display["time"] = df_display.created_at.dt.strftime("%Y-%m-%d %H:%M")
@@ -520,29 +555,67 @@ if "df" in st.session_state and not st.session_state.df.empty:
         sentiment_map = {"positive": "😊", "negative": "😞", "neutral": "😐"}
         df_display["sentiment_display"] = df_display.sentiment.map(sentiment_map) + " " + df_display.sentiment
         
+        # Add report button for each row
+        df_display["report"] = ""  # Empty column for the report button
+        
         # Add confidence if available
-        display_cols = ["source", "time", "sentiment_display", "score", "content", "url"]
+        display_cols = ["source", "time", "sentiment_display", "score", "content", "url", "report"]
         if 'confidence' in df_display.columns:
             df_display["confidence_display"] = df_display.confidence.round(2)
             display_cols.insert(-2, "confidence_display")
         
         available_cols = [col for col in display_cols if col in df_display.columns]
         
-        column_config = {
-            "url": st.column_config.LinkColumn("🔗 Link"),
-            "sentiment_display": "😊 Sentiment",
-            "score": "⭐ Score"
-        }
+        # Display the table with custom formatting
+        for idx, row in df_display.iterrows():
+            cols = st.columns([1, 1, 1, 1, 4, 2, 1])
+            
+            # Source
+            cols[0].write(f"🔗 {row['source']}")
+            
+            # Time
+            cols[1].write(row['time'])
+            
+            # Sentiment
+            sentiment_emoji = sentiment_map.get(row['sentiment'], '❓')
+            cols[2].write(f"{sentiment_emoji} {row['sentiment']}")
+            
+            # Score
+            cols[3].write(f"⭐ {row['score']:.1f}")
+            
+            # Content (with truncation)
+            content = row['content']
+            if len(content) > 100:
+                content = content[:97] + "..."
+            cols[4].write(content)
+            
+            # URL (as clickable link)
+            if 'url' in row and pd.notna(row['url']):
+                cols[5].markdown(f"[View]({row['url']})")
+            
+            # Report button
+            if cols[6].button("⚠️", key=f"report_{idx}"):
+                st.session_state['reporting_post'] = {
+                    'id': str(idx),
+                    'platform': row['source'],
+                    'text': row['content'],
+                    'url': row.get('url', '')
+                }
+                st.rerun()  # Rerun to show the reporting UI immediately
         
-        if 'confidence_display' in df_display.columns:
-            column_config["confidence_display"] = "🎯 Confidence"
-        
-        st.dataframe(
-            df_display[available_cols],
-            column_config=column_config,
-            use_container_width=True,
-            hide_index=True
-        )
+        # Show reporting UI if a post is being reported
+        if 'reporting_post' in st.session_state:
+            # Create a clean reporting section
+            st.markdown("---")
+            st.markdown("## 🚨 Report Post")
+            
+            # Add a button to cancel reporting
+            if st.button("❌ Cancel Report"):
+                del st.session_state['reporting_post']
+                st.rerun()
+            
+            # Show the reporting UI
+            report_post_ui(st.session_state['reporting_post'], report_manager)
 
         # Export option
         if st.button("📥 Export to CSV"):
